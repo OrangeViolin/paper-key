@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>纸上键 · build-4</title>
+<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="onboarding.css?v=1">
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="brand">
+      <span class="logo">01fish</span>
+      <h1>纸上键</h1>
+    </div>
+    <button id="btnListen" class="listen-btn off" onclick="window.__pk_statusClick && window.__pk_statusClick()">
+      <span class="dot"></span><span class="txt">▶ 开启全局监听</span>
+    </button>
+  </header>
+
+  <section class="calli">
+    <div class="calli-head">
+      <h2>手敲金句 · 真打字，一字一落笔</h2>
+      <div class="calli-btns">
+        <button class="calli-btn" onclick="window.__pk_typing && window.__pk_typing.import()" title="zip / json / md / txt / html / 文章链接都行，自动挖金句">导入</button>
+        <button class="calli-btn" onclick="window.__pk_typing && window.__pk_typing.manage()" title="查看、删除导入的金句">管理</button>
+        <button class="calli-btn primary" onclick="window.__pk_typing && window.__pk_typing.start()">抽一句</button>
+      </div>
+    </div>
+    <div id="typeMeta" class="type-meta"></div>
+    <div class="type-paper" onclick="var i=document.getElementById('typeInput'); if(i) i.focus();">
+      <div id="typeText" class="type-text"></div>
+      <textarea id="typeInput" class="type-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" rows="1"></textarea>
+      <div class="type-progress-track"><div id="typeProgress" class="type-progress-bar"></div></div>
+    </div>
+    <p id="typeHint" class="calli-hint">选好音色 → 点"抽一句" → 对着文字真打 · 敲回车换下一句</p>
+    <div id="typeResult" class="calli-result" hidden></div>
+  </section>
+
+  <section class="picker">
+    <div class="picker-head">
+      <h2>选一个音色</h2>
+      <div class="vol">
+        <span class="vol-lbl">音量</span>
+        <input id="vol" type="range" min="0" max="100" value="80" oninput="window.__pk_setVol && window.__pk_setVol(this.value)">
+        <span id="volTxt" class="vol-txt">80</span>
+      </div>
+    </div>
+
+    <!-- 卡片硬编码，JS 挂了也能看到 -->
+    <div id="grid" class="grid">
+      <div class="card" data-pack="cherrymx-blue-pbt" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-blue-pbt')">
+        <span class="icon">🔵</span><div class="name">青轴 Blue</div><div class="sub">CherryMX · PBT</div>
+      </div>
+      <div class="card" data-pack="cherrymx-brown-pbt" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-brown-pbt')">
+        <span class="icon">🟤</span><div class="name">茶轴 Brown</div><div class="sub">CherryMX · PBT</div>
+      </div>
+      <div class="card" data-pack="cherrymx-red-pbt" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-red-pbt')">
+        <span class="icon">🔴</span><div class="name">红轴 Red</div><div class="sub">CherryMX · PBT</div>
+      </div>
+      <div class="card" data-pack="cherrymx-black-pbt" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-black-pbt')">
+        <span class="icon">⚫</span><div class="name">黑轴 Black</div><div class="sub">CherryMX · PBT</div>
+      </div>
+      <div class="card" data-pack="topre-purple-hybrid-pbt" onclick="window.__pk_pickPack && window.__pk_pickPack('topre-purple-hybrid-pbt')">
+        <span class="icon">⚪</span><div class="name">Topre 静电容</div><div class="sub">Purple Hybrid</div>
+      </div>
+      <div class="card" data-pack="cream-travel" onclick="window.__pk_pickPack && window.__pk_pickPack('cream-travel')">
+        <span class="icon">🧈</span><div class="name">NK Cream</div><div class="sub">Travel</div>
+      </div>
+      <div class="card" data-pack="eg-oreo" onclick="window.__pk_pickPack && window.__pk_pickPack('eg-oreo')">
+        <span class="icon">🍪</span><div class="name">EG Oreo</div><div class="sub">Everglide</div>
+      </div>
+      <div class="card" data-pack="holy-pandas" onclick="window.__pk_pickPack && window.__pk_pickPack('holy-pandas')">
+        <span class="icon">🐼</span><div class="name">Holy Pandas</div><div class="sub">Tactile 神级</div>
+      </div>
+      <div class="card" data-pack="cherrymx-blue-abs" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-blue-abs')">
+        <span class="icon">🔵</span><div class="name">青轴 Blue</div><div class="sub">CherryMX · ABS</div>
+      </div>
+      <div class="card" data-pack="cherrymx-brown-abs" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-brown-abs')">
+        <span class="icon">🟤</span><div class="name">茶轴 Brown</div><div class="sub">CherryMX · ABS</div>
+      </div>
+      <div class="card" data-pack="cherrymx-red-abs" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-red-abs')">
+        <span class="icon">🔴</span><div class="name">红轴 Red</div><div class="sub">CherryMX · ABS</div>
+      </div>
+      <div class="card" data-pack="cherrymx-black-abs" onclick="window.__pk_pickPack && window.__pk_pickPack('cherrymx-black-abs')">
+        <span class="icon">⚫</span><div class="name">黑轴 Black</div><div class="sub">CherryMX · ABS</div>
+      </div>
+      <div class="card" data-pack="nk-cream" onclick="window.__pk_pickPack && window.__pk_pickPack('nk-cream')">
+        <span class="icon">🥛</span><div class="name">NK Cream</div><div class="sub">NovelKeys</div>
+      </div>
+      <div class="card" data-pack="eg-crystal-purple" onclick="window.__pk_pickPack && window.__pk_pickPack('eg-crystal-purple')">
+        <span class="icon">💜</span><div class="name">EG Crystal</div><div class="sub">Everglide · Purple</div>
+      </div>
+      <div class="card" data-pack="turquoise" onclick="window.__pk_pickPack && window.__pk_pickPack('turquoise')">
+        <span class="icon">🩵</span><div class="name">Turquoise</div><div class="sub">Tealio · 青绿</div>
+      </div>
+      <div class="card" data-pack="mxblue-travel" onclick="window.__pk_pickPack && window.__pk_pickPack('mxblue-travel')">
+        <span class="icon">✈️</span><div class="name">青轴旅行版</div><div class="sub">Travel · Blue</div>
+      </div>
+      <div class="card" data-pack="mxbrown-travel" onclick="window.__pk_pickPack && window.__pk_pickPack('mxbrown-travel')">
+        <span class="icon">🧳</span><div class="name">茶轴旅行版</div><div class="sub">Travel · Brown</div>
+      </div>
+      <div class="card" data-pack="mxblack-travel" onclick="window.__pk_pickPack && window.__pk_pickPack('mxblack-travel')">
+        <span class="icon">🎒</span><div class="name">黑轴旅行版</div><div class="sub">Travel · Black</div>
+      </div>
+    </div>
+
+    <h3 class="section-title">🌿 禅意 · 合成灵魂</h3>
+    <div class="grid">
+      <div class="card" data-pack="synth-woodfish" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-woodfish')">
+        <span class="icon">🪵</span><div class="name">木鱼</div><div class="sub">空心敲击</div>
+      </div>
+      <div class="card" data-pack="synth-waterdrop" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-waterdrop')">
+        <span class="icon">💧</span><div class="name">水滴</div><div class="sub">清泉滴石</div>
+      </div>
+      <div class="card" data-pack="synth-porcelain" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-porcelain')">
+        <span class="icon">🏺</span><div class="name">瓷器</div><div class="sub">青花叮响</div>
+      </div>
+      <div class="card" data-pack="synth-bronzebell" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-bronzebell')">
+        <span class="icon">🛎️</span><div class="name">铜磬</div><div class="sub">寺院磬声</div>
+      </div>
+      <div class="card" data-pack="synth-guqin" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-guqin')">
+        <span class="icon">🎐</span><div class="name">古琴</div><div class="sub">一拨九回</div>
+      </div>
+      <div class="card" data-pack="synth-bamboo" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-bamboo')">
+        <span class="icon">🎋</span><div class="name">竹筒</div><div class="sub">空竹回响</div>
+      </div>
+    </div>
+
+    <h3 class="section-title">⚙️ 老派 · 机械岁月</h3>
+    <div class="grid">
+      <div class="card" data-pack="synth-typewriter" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-typewriter')">
+        <span class="icon">⌨️</span><div class="name">打字机</div><div class="sub">咔哒一声</div>
+      </div>
+      <div class="card" data-pack="synth-modem" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-modem')">
+        <span class="icon">📠</span><div class="name">拨号猫</div><div class="sub">8N1 赛博</div>
+      </div>
+      <div class="card" data-pack="synth-telegraph" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-telegraph')">
+        <span class="icon">📡</span><div class="name">电报机</div><div class="sub">摩尔斯滴</div>
+      </div>
+      <div class="card" data-pack="synth-abacus" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-abacus')">
+        <span class="icon">🧮</span><div class="name">算盘</div><div class="sub">算珠相击</div>
+      </div>
+      <div class="card" data-pack="synth-clock" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-clock')">
+        <span class="icon">⏱️</span><div class="name">齿轮钟</div><div class="sub">机械腕表</div>
+      </div>
+    </div>
+
+    <h3 class="section-title">🎮 8-bit · 电子青春</h3>
+    <div class="grid">
+      <div class="card" data-pack="synth-nes-blip" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-nes-blip')">
+        <span class="icon">🎮</span><div class="name">NES Blip</div><div class="sub">红白机短音</div>
+      </div>
+      <div class="card" data-pack="synth-coin" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-coin')">
+        <span class="icon">🪙</span><div class="name">金币</div><div class="sub">马里奥收集</div>
+      </div>
+      <div class="card" data-pack="synth-jump" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-jump')">
+        <span class="icon">🍄</span><div class="name">马里奥跳</div><div class="sub">跳跃上扬</div>
+      </div>
+      <div class="card" data-pack="synth-laser" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-laser')">
+        <span class="icon">🔫</span><div class="name">激光枪</div><div class="sub">太空射击</div>
+      </div>
+      <div class="card" data-pack="synth-pacman" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-pacman')">
+        <span class="icon">👾</span><div class="name">Pac-Man</div><div class="sub">吃豆子</div>
+      </div>
+    </div>
+
+    <h3 class="section-title">🎈 趣味 · 搞怪日常</h3>
+    <div class="grid">
+      <div class="card" data-pack="synth-bubble" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-bubble')">
+        <span class="icon">🫧</span><div class="name">气泡</div><div class="sub">水中冒泡</div>
+      </div>
+      <div class="card" data-pack="synth-pop" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-pop')">
+        <span class="icon">🎈</span><div class="name">泡泡破</div><div class="sub">pop 一下</div>
+      </div>
+      <div class="card" data-pack="synth-spring" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-spring')">
+        <span class="icon">🪀</span><div class="name">弹簧</div><div class="sub">boing</div>
+      </div>
+      <div class="card" data-pack="synth-cat" onclick="window.__pk_pickPack && window.__pk_pickPack('synth-cat')">
+        <span class="icon">🐱</span><div class="name">猫叫</div><div class="sub">一声喵</div>
+      </div>
+    </div>
+
+    <p id="loadHint" class="load-hint">静态 UI 已就绪 · 等 app.js 接管⋯⋯</p>
+  </section>
+
+  <!-- 首次引导（全新用户第一次启动） -->
+  <div id="pkOnboard" class="pk-ob" hidden>
+    <div class="pk-ob-mask"></div>
+    <div class="pk-ob-card">
+      <h3 class="pk-ob-title">欢迎 · 纸上键</h3>
+      <div class="pk-ob-body"></div>
+      <div class="pk-ob-foot"></div>
+      <div class="pk-ob-dots"></div>
+    </div>
+  </div>
+
+  <!-- 诊断 + 修复面板（点状态条或权限失效时弹） -->
+  <div id="pkDiagDlg" class="pk-dd" hidden>
+    <div class="pk-dd-mask" data-close></div>
+    <div class="pk-dd-card">
+      <div class="pk-dd-head">
+        <h3>权限诊断</h3>
+        <button class="pk-dd-close" data-close>×</button>
+      </div>
+      <div class="pk-dd-body"></div>
+      <div class="pk-dd-actions">
+        <button class="pk-dd-btn primary" data-action="open-im">打开输入监控</button>
+        <button class="pk-dd-btn" data-action="request">申请授权</button>
+        <button class="pk-dd-btn" data-action="open-ax">打开辅助功能</button>
+        <button class="pk-dd-btn" data-action="restart" style="display:none;">重启 app</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span id="current">—</span>
+    <span class="sep">·</span>
+    <a href="https://github.com/OrangeViolin/paper-key" target="_blank">GitHub</a>
+    <span class="sep">·</span>
+    <span>build-4</span>
+  </footer>
+</div>
+
+<script>
+  // 内联探针：立即把标题改成含时间戳，肉眼可辨
+  document.title = '纸上键 · build-4 · inline-ok';
+  window.__paperkey_inline_ran__ = true;
+</script>
+<script src="synth.js?v=1"></script>
+<script src="vendor-jszip.min.js"></script>
+<script src="typing.js?v=13"></script>
+<script src="onboarding.js?v=1"></script>
+<script src="app.js?v=9"></script>
+</body>
+</html>
