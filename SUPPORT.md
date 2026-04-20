@@ -13,5 +13,3 @@
 - ⭐ [给项目点个 Star](https://github.com/OrangeViolin/paper-key)
 - 🐛 [提 Issue](https://github.com/OrangeViolin/paper-key/issues) — 报 Bug / 推荐想要的音色 / 提建议
 - 🔁 把它分享给可能喜欢的朋友
-
-—— [01fish](https://01fish.com)
