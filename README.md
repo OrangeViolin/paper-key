@@ -185,19 +185,13 @@ macOS 10.15+ 引入了更细粒度的 **Input Monitoring** 权限，专门管「
 
 ---
 
-## 支持项目 🍵
+## 支持项目
 
-纸上键完全免费开源。如果它让你敲字时多了一点点开心，欢迎：
+纸上键完全免费开源。欢迎：
 
-- ⭐ **[点个 Star](../../stargazers)**
-- 🐛 **[提 Issue](../../issues)** — 报 Bug / 想要的音色 / 想法
-- 🍵 **请我喝杯茶** — 微信扫下面这个码：
-
-<p align="center">
-  <img src="./src/assets/wechat-pay.png" alt="微信赞赏" width="240">
-</p>
-
-哪怕只是一杯咖啡钱，都是对继续迭代的最大鼓励。
+- ⭐ [点个 Star](../../stargazers)
+- 🐛 [提 Issue](../../issues) — 报 Bug / 推荐想要的音色 / 提建议
+- 🍵 [请我喝杯咖啡](./SUPPORT.md)
 
 ---
 
